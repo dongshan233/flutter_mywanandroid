@@ -15,7 +15,12 @@ class Routes {
       page: () => const SplashPage(),
       transition: Transition.fadeIn,
     ),
-    GetPage(name: home, page: () => const MainPage()),
+    GetPage(
+      name: home,
+      page: () => const MainPage(),
+      transition: Transition.fadeIn,
+      binding: MainPageBindings(),
+    ),
     // GetPage(name: login, page: () => const LoginPage()),
     // GetPage(name: register, page: () => const RegisterPage()),
     // GetPage(name: webView, page: () => const WebViewPage()),

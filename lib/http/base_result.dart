@@ -3,6 +3,7 @@ class BaseResult<T> {
   final int errorCode;
   final String errorMsg;
   final T? data;
+  bool get isSuccess => errorCode == 0;
 
   //构造函数
   BaseResult({required this.errorCode, required this.errorMsg, this.data});

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/bindings_interface.dart';
+import 'package:my_wanandroid/pages/main/controller/home_controller.dart';
 import 'package:my_wanandroid/pages/main/nav/harmonyos_column.dart';
 import 'package:my_wanandroid/pages/main/nav/home_widget.dart';
 import 'package:my_wanandroid/pages/main/nav/mine_widget.dart';
@@ -14,7 +18,8 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage>
+    with AutomaticKeepAliveClientMixin {
   int _currentIndex = 0;
   final PageController _pageController = PageController(initialPage: 0);
   List<BottomNavigationBarItem> _items() {
@@ -72,5 +77,16 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
     );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+}
+
+class MainPageBindings extends Bindings {
+  @override
+  void dependencies() {
+    // Get.put(dependency)
+    Get.lazyPut(() => HomeController());
   }
 }
