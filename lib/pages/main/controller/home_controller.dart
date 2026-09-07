@@ -21,7 +21,7 @@ class HomeController extends BaseController {
     controlFinishRefresh: true,
   );
   //是否加载成功
-  RxBool isLoading = false.obs;
+  RxBool isLoading = true.obs;
 
   //文案内容
   RxString loadFailedText = "加载失败".obs;
@@ -55,8 +55,36 @@ class HomeController extends BaseController {
       }
     } catch (e) {
       ToastUtil.show(e.toString());
+      // 刷新完成
       easyRefreshController.finishRefresh();
+      // 加载完成
       easyRefreshController.finishLoad();
     }
+  }
+
+  Future<void> getHomeArticleList() async {
+    try {
+      final result = await ApiService().getHomeArticleList();
+      homeArticleList.value = result.data?.datas ?? [];
+      if (result.isSuccess) {
+        easyRefreshController.finishRefresh();
+        easyRefreshController.finishLoad();
+        isLoading.value = true;
+        loadFailedText.value = "加载成功";
+      }
+    } catch (e) {
+      ToastUtil.show(e.toString());
+      easyRefreshController.finishRefresh();
+      easyRefreshController.finishLoad();
+      isLoading.value = false;
+      loadFailedText.value = e.toString();
+    }
+  }
+
+  @override
+  void onReady() async {
+    super.onReady();
+    await getHomeArticleList();
+    await getBannerList();
   }
 }
