@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:my_wanandroid/api/api_constant.dart';
 import 'package:my_wanandroid/http/base_result.dart';
 import 'package:my_wanandroid/http/nework_manager.dart';
 import 'package:my_wanandroid/model/banner_info.dart';
 import 'package:my_wanandroid/model/home_article.dart';
+import 'package:my_wanandroid/model/user_info.dart';
 
 class ApiService {
   static final ApiService _instance = ApiService._internal();
@@ -46,6 +48,26 @@ class ApiService {
       errorCode: result.errorCode,
       errorMsg: result.errorMsg,
       data: HomeArticle.fromJson(result.data as Map<String, dynamic>),
+    );
+  }
+
+  Future<BaseResult<UserInfo>> login({Map<String, dynamic>? params}) async {
+    final result = await _networkManager.post(
+      ApiConstant.login,
+      data: params,
+      contentType: Headers.formUrlEncodedContentType,
+    );
+    if (result.data == null) {
+      return BaseResult(
+        errorCode: result.errorCode,
+        errorMsg: result.errorMsg,
+        data: null,
+      );
+    }
+    return BaseResult(
+      errorCode: result.errorCode,
+      errorMsg: result.errorMsg,
+      data: UserInfo.fromJson(result.data as Map<String, dynamic>),
     );
   }
 }

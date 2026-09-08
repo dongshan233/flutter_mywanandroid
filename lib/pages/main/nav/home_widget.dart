@@ -87,7 +87,15 @@ class _HomeWidgetState extends State<HomeWidget>
           final article = _homeController.homeArticleList[index];
           return InkWell(
             onTap: () {
-              RouteUtils.to(Routes.webView);
+              RouteUtils.to(
+                Routes.webView,
+                arguments: {
+                  "link": article.link,
+                  "title": article.title,
+                  "originId": article.id,
+                  "collect": article.collect,
+                },
+              );
             },
             child: Card(
               margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

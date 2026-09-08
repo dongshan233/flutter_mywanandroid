@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:my_wanandroid/pages/login/login_page.dart';
 import 'package:my_wanandroid/pages/main/main_page.dart';
 import 'package:my_wanandroid/pages/splash/splash_page.dart';
+import 'package:my_wanandroid/pages/webview/webview_page.dart';
 
 class Routes {
   static const String initial = '/';
@@ -21,6 +23,8 @@ class Routes {
       transition: Transition.fadeIn,
       binding: MainPageBindings(),
     ),
+    GetPage(name: webView, page: () => WebviewPage()),
+    GetPage(name: login, page: () => LoginPag()),
     // GetPage(name: login, page: () => const LoginPage()),
     // GetPage(name: register, page: () => const RegisterPage()),
     // GetPage(name: webView, page: () => const WebViewPage()),
