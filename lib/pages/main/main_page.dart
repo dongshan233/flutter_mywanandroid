@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
+import 'package:my_wanandroid/pages/login/controller/user_controller.dart';
 import 'package:my_wanandroid/pages/main/controller/home_controller.dart';
 import 'package:my_wanandroid/pages/main/nav/harmonyos_column.dart';
 import 'package:my_wanandroid/pages/main/nav/home_widget.dart';
@@ -87,6 +88,10 @@ class MainPageBindings extends Bindings {
   @override
   void dependencies() {
     // Get.put(dependency)
+    Get.put<UserController>(
+      UserController(),
+      permanent: true,
+    ); //permanent=true确保UserController永不销毁
     Get.lazyPut(() => HomeController());
   }
 }

@@ -90,7 +90,9 @@ class _LoginPagState extends State<LoginPag>
               opacity: _fadeAnimation,
               child: SlideTransition(
                 position: _slideAnimation,
-                child: Column(children: [const SizedBox(height: 60)]),
+                child: Column(
+                  children: [const SizedBox(height: 60), _buildLogo()],
+                ),
               ),
             ),
           ),
