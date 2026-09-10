@@ -55,6 +55,8 @@ class LoadingDialogUtil {
     try {
       final result = await task();
       return result;
-    } finally {}
+    } finally {
+      hide(context);
+    }
   }
 }

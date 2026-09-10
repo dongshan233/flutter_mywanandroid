@@ -6,6 +6,7 @@ import 'package:my_wanandroid/api/api_service.dart';
 import 'package:my_wanandroid/base/base_controller.dart';
 import 'package:my_wanandroid/http/base_result.dart';
 import 'package:my_wanandroid/model/user_info.dart';
+import 'package:my_wanandroid/routes/route_utils.dart';
 import 'package:my_wanandroid/utils/loading_dialog_util.dart';
 import 'package:my_wanandroid/utils/storage_util.dart';
 import 'package:my_wanandroid/utils/toast_util.dart';
@@ -39,6 +40,7 @@ class UserController extends BaseController<UserInfo> {
             // userInfo = currentUserInfo.data!;
             //更新用户信息
             _userInfo.value = currentUserInfo.data!;
+            RouteUtils.back();
           } else {
             ToastUtil.showError(currentUserInfo.errorMsg);
           }
