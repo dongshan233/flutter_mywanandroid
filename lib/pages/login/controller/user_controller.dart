@@ -20,7 +20,7 @@ class UserController extends BaseController<UserInfo> {
   set userInfo(UserInfo value) => _userInfo.value = value;
 
   bool get isLogin =>
-      _userInfo.value.username.isEmpty && _userInfo.value.id != 0;
+      _userInfo.value.username.isNotEmpty && _userInfo.value.id != 0;
   @override
   Future<void> loadData() async {}
 
