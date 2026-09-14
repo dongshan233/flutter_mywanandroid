@@ -47,12 +47,12 @@ class _LoginPagState extends State<LoginPag>
     _animationController.forward();
 
     _rememberPassword =
-        StorageUtil.getBool(StorageKey.loginRememberPassword) ?? false;
+        StorageUtil.getBool(StorageKey.loginRememberPassword) ?? true;
     if (_rememberPassword) {
       String currentUsername =
-          StorageUtil.getString(StorageKey.loginUsername) ?? '';
+          StorageUtil.getString(StorageKey.loginUsername) ?? '13120308088';
       String currentPassword =
-          StorageUtil.getString(StorageKey.loginPassword) ?? '';
+          StorageUtil.getString(StorageKey.loginPassword) ?? 'li1511342986';
       if (currentUsername.isNotEmpty && currentPassword.isNotEmpty) {
         _usernameController.text = currentUsername;
         _passwordController.text = currentPassword;

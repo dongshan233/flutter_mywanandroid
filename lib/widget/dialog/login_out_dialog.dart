@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:get/route_manager.dart';
+import 'package:my_wanandroid/model/user_info.dart';
+import 'package:my_wanandroid/pages/login/controller/user_controller.dart';
+import 'package:my_wanandroid/routes/route_utils.dart';
+import 'package:my_wanandroid/utils/storage_util.dart';
+import 'package:my_wanandroid/utils/toast_util.dart';
 
 class LoginOutDialog {
   static Future<void> show({
@@ -33,7 +39,10 @@ class LoginOutDialog {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 32),
         padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -59,7 +68,9 @@ class LoginOutDialog {
                   child: _buildButton(
                     text: '取消',
                     isPrimary: false,
-                    onTap: () {},
+                    onTap: () {
+                      RouteUtils.back();
+                    },
                   ),
                 ),
                 SizedBox(width: 12),
@@ -67,7 +78,10 @@ class LoginOutDialog {
                   child: _buildButton(
                     text: '确认',
                     isPrimary: true,
-                    onTap: () {},
+                    onTap: () {
+                      RouteUtils.back();
+                      onConfirm();
+                    },
                   ),
                 ),
               ],
@@ -105,5 +119,14 @@ class LoginOutDialog {
     );
   }
 
-  static Future<void> _defaultLogout() async {}
+  static Future<void> _defaultLogout() async {
+    try {
+      UserController userController = Get.find<UserController>();
+      userController.userInfo = UserInfo();
+      await StorageUtil.clear();
+      ToastUtil.show('退出登录成功');
+    } catch (e) {
+      ToastUtil.show(e.toString());
+    }
+  }
 }

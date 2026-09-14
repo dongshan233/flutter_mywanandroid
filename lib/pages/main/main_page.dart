@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:my_wanandroid/pages/login/controller/user_controller.dart';
+import 'package:my_wanandroid/pages/main/controller/harmonyos_column_controller.dart';
 import 'package:my_wanandroid/pages/main/controller/home_controller.dart';
 import 'package:my_wanandroid/pages/main/nav/harmonyos_column.dart';
 import 'package:my_wanandroid/pages/main/nav/home_widget.dart';
@@ -51,7 +52,7 @@ class _MainPageState extends State<MainPage>
           physics: const NeverScrollableScrollPhysics(),
           children: [
             HomeWidget(),
-            HarmonyosColumn(),
+            HarmonyosColumnWidget(),
             SystemWidget(),
             ProjectMenuWidget(),
             MineWddget(),
@@ -92,6 +93,7 @@ class MainPageBindings extends Bindings {
       UserController(),
       permanent: true,
     ); //permanent=true确保UserController永不销毁
+    Get.lazyPut(() => HarmonyosColumnController());
     Get.lazyPut(() => HomeController());
   }
 }
