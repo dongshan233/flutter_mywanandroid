@@ -16,7 +16,7 @@ class _LoginPagState extends State<LoginPag>
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  UserController _userController = Get.find<UserController>();
+  final UserController _userController = Get.find<UserController>();
 
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;

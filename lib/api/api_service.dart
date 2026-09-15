@@ -6,6 +6,7 @@ import 'package:my_wanandroid/model/banner_info.dart';
 import 'package:my_wanandroid/model/collect_article_info.dart';
 import 'package:my_wanandroid/model/harmony_column_info.dart';
 import 'package:my_wanandroid/model/home_article.dart';
+import 'package:my_wanandroid/model/system_tree.info.dart';
 import 'package:my_wanandroid/model/user_info.dart';
 
 class ApiService {
@@ -50,6 +51,22 @@ class ApiService {
       errorCode: result.errorCode,
       errorMsg: result.errorMsg,
       data: HomeArticle.fromJson(result.data as Map<String, dynamic>),
+    );
+  }
+
+  Future<BaseResult<List<SystemTreeInfo>>> getSystemTreeList({
+    Map<String, dynamic>? params,
+  }) async {
+    final result = await _networkManager.get(
+      ApiConstant.systemTreeList,
+      queryParameters: params,
+    );
+    return BaseResult(
+      errorCode: result.errorCode,
+      errorMsg: result.errorMsg,
+      data: (result.data as List)
+          .map((e) => SystemTreeInfo.fromMap(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 

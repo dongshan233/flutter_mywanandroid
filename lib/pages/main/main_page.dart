@@ -6,6 +6,7 @@ import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:my_wanandroid/pages/login/controller/user_controller.dart';
 import 'package:my_wanandroid/pages/main/controller/harmonyos_column_controller.dart';
 import 'package:my_wanandroid/pages/main/controller/home_controller.dart';
+import 'package:my_wanandroid/pages/main/controller/system_controller.dart';
 import 'package:my_wanandroid/pages/main/nav/harmonyos_column.dart';
 import 'package:my_wanandroid/pages/main/nav/home_widget.dart';
 import 'package:my_wanandroid/pages/main/nav/mine_widget.dart';
@@ -94,6 +95,7 @@ class MainPageBindings extends Bindings {
       permanent: true,
     ); //permanent=true确保UserController永不销毁
     Get.lazyPut(() => HarmonyosColumnController());
+    Get.lazyPut(() => SystemController());
     Get.lazyPut(() => HomeController());
   }
 }

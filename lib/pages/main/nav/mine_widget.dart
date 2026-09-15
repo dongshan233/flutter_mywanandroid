@@ -12,7 +12,13 @@ class MineWddget extends StatefulWidget {
   @override
   State<MineWddget> createState() => _MineWddgetState();
 }
+//AutomaticKeepAliveClientMixin
+//这个“保活”功能，必须混入（with）到 State 类中才能生效。而只有 StatefulWidget 才有 State
 
+//2:可以让_MineWddgetState继承GetView 《UserController》，就可以直接使用controller了，
+//不用再 Get.find<UserController>();
+// GetView 本质上是一个 StatelessWidget，但它提供了一个非常方便的 controller 属性。
+//我们让 State 类继承它，就是为了在 build 方法里能直接使用 controller.xxx，省去手动 Get.find() 的麻烦。
 class _MineWddgetState extends State<MineWddget>
     with AutomaticKeepAliveClientMixin {
   @override
@@ -66,6 +72,7 @@ class _MineWddgetState extends State<MineWddget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
